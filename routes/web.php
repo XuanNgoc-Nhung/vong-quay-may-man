@@ -11,8 +11,16 @@
 |
 */
 
+use App\Http\Controllers\LuckyWheelController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/gifts', [LuckyWheelController::class, 'gifts'])->name('luckywheel.gifts');
+Route::get('/', [LuckyWheelController::class, 'index'])->name('luckywheel.index');
+Route::get('/get-spin/{phone}', [LuckyWheelController::class, 'getSpin'])->name('luckywheel.getSpin');
+Route::get('/result/{phone}', [LuckyWheelController::class, 'result'])->name('luckywheel.result');
+
 Route::get('/logout', 'MyLoginController@logOut')->name("logOut");
-Route::get('/login', 'MyLoginController@getLogin')->name("getLogin");
+Route::get('/login', 'MyLoginController@getLogin')->name("login");
 Route::post('/login', 'MyLoginController@postLogin')->name("postLogin");
 Route::get('/register', 'MyLoginController@getRegister')->name("getRegister");
 Route::post('/register', 'MyLoginController@postRegister')->name("postRegister");
@@ -24,6 +32,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/lich-su', 'HomeController@lichSuQuay')->name("admin.lichSu");
     Route::post('/danh-sach-trung-qua', 'HomeController@danhSachTrungQua')->name("admin.danhSachTrungQua");
     Route::post('/danh-sach-qua', 'HomeController@danhSachQua')->name("admin.danhSachQua");
-    Route::post('/danh-sach-qua', 'HomeController@danhSachQua')->name("admin.danhSachQua");
+    // Route::post('/danh-sach-qua', 'HomeController@danhSachQua')->name("admin.danhSachQua");
 });
 
+
+Auth::routes();
